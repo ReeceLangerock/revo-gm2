@@ -9,12 +9,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ReeceLangerock/revo-gm.git"
+    "url": "git+https://github.com/ReeceLangerock/revo-gm2.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ReeceLangerock/revo-gm/issues"
+    "url": "https://github.com/ReeceLangerock/revo-gm2/issues"
   },
-  "homepage": "https://github.com/ReeceLangerock/revo-gm#readme"
+  "homepage": "https://github.com/ReeceLangerock/revo-gm2#readme"
 }
