@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <title>Revo GM</title>
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <%- include ./partials/navigation.html %>
+
+        <div class="container fluid">
+            <div>
+
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                  <li class="dropdown">
+                      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Preseason
+                      <span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                          <li role="presentation" class ="active"><a href="#pre0" aria-controls="pre0" role="tab" data-toggle="tab">Week 1</a></li>
+                          <li role="presentation"><a href="#pre1" aria-controls="pre1" role="tab" data-toggle="tab">Week 2</a></li>
+                          <li role="presentation"><a href="#pre2" aria-controls="pre2" role="tab" data-toggle="tab">Week 3</a></li>
+                          <li role="presentation"><a href="#pre3" aria-controls="pre3" role="tab" data-toggle="tab">Week 4</a></li>
+                      </ul>
+                  </li>
+                  <li class="dropdown">
+                      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Regular Season
+                      <span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                          <li role="presentation"><a href="#reg0" aria-controls="reg0" role="tab" data-toggle="tab">Week 1</a></li>
+                          <li role="presentation"><a href="#reg1" aria-controls="reg1" role="tab" data-toggle="tab">Week 2</a></li>
+                          <li role="presentation"><a href="#reg2" aria-controls="reg2" role="tab" data-toggle="tab">Week 3</a></li>
+                          <li role="presentation"><a href="#reg3" aria-controls="reg3" role="tab" data-toggle="tab">Week 4</a></li>
+                          <li role="presentation"><a href="#reg4" aria-controls="reg4" role="tab" data-toggle="tab">Week 5</a></li>
+                          <li role="presentation"><a href="#reg5" aria-controls="reg5" role="tab" data-toggle="tab">Week 6</a></li>
+                          <li role="presentation"><a href="#reg6" aria-controls="reg6" role="tab" data-toggle="tab">Week 7</a></li>
+                          <li role="presentation"><a href="#reg7" aria-controls="reg7" role="tab" data-toggle="tab">Week 8</a></li>
+                          <li role="presentation"><a href="#reg8" aria-controls="reg8" role="tab" data-toggle="tab">Week 9</a></li>
+                          <li role="presentation"><a href="#reg9" aria-controls="reg9" role="tab" data-toggle="tab">Week 10</a></li>
+                          <li role="presentation"><a href="#reg10" aria-controls="reg10" role="tab" data-toggle="tab">Week 11</a></li>
+                          <li role="presentation"><a href="#reg11" aria-controls="reg11" role="tab" data-toggle="tab">Week 12</a></li>
+                          <li role="presentation"><a href="#reg12" aria-controls="reg12" role="tab" data-toggle="tab">Week 13</a></li>
+                          <li role="presentation"><a href="#reg13" aria-controls="reg13" role="tab" data-toggle="tab">Week 14</a></li>
+                          <li role="presentation"><a href="#reg14" aria-controls="reg14" role="tab" data-toggle="tab">Week 15</a></li>
+                          <li role="presentation"><a href="#reg15" aria-controls="reg15" role="tab" data-toggle="tab">Week 16</a></li>
+                          <li role="presentation"><a href="#reg16" aria-controls="reg16" role="tab" data-toggle="tab">Week 17</a></li>
+                      </ul>
+                  </li>
+                  <li class="dropdown">
+                      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Post Season
+                      <span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                          <li role="presentation"><a href="#post0" aria-controls="post0" role="tab" data-toggle="tab">Wildcard</a></li>
+                          <li role="presentation"><a href="#post1" aria-controls="post1" role="tab" data-toggle="tab">Divisional</a></li>
+                          <li role="presentation"><a href="#post2" aria-controls="post2" role="tab" data-toggle="tab">Conference</a></li>
+                          <li role="presentation"><a href="#post3" aria-controls="post3" role="tab" data-toggle="tab">Super Bowl</a></li>
+                      </ul>
+                  </li>
+              </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+
+                    <% for (let weekIndex = 0; weekIndex < 4; weekIndex++){ %>
+                    <% var id = "pre" + weekIndex; %>
+                    <div role="tabpanel" class="tab-pane active" id="<%=id %>">
+                    <h1>Preseason Week&nbsp<%=weekIndex +1 %></h1>
+                    <% for (let i = 0; i <= schedule[weekIndex][0].length - 1; i++) { %>
+
+                    <div class = "scoreContainer">
+                      <div class = "homeDiv col-md4">
+                        <img src = "#">
+                        <h3><%= schedule[weekIndex][0][i].homeTeamId %></h3>
+                      </div>
+
+                      <div class = "scoreDiv col-md2">
+                        <h3><%= schedule[weekIndex][0][i].homeScore %></h3>
+                        <h3><a href= "/recap/<%= schedule[weekIndex][0][i].scheduleId %>">&nbspvs&nbsp</a></h3>
+                        <h3><%= schedule[weekIndex][0][i].awayScore %></h3>
+                      </div>
+
+                      <div class = "awayDiv col-md4">
+                        <h3><%= schedule[weekIndex][0][i].awayTeamId %></h3>
+                        <img src = "#">
+                      </div>
+                    </div>
+                    <% } %>
+                    </div>
+                    <% } %>
+
+                    <% for (let weekIndex = 4; weekIndex < 21; weekIndex++){ %>
+                    <% var id = "reg" + (weekIndex -4); %>
+                    <div role="tabpanel" class="tab-pane active" id="<%=id %>">
+                    <h1>Week&nbsp<%=weekIndex -3 %></h1>
+                    <% for (let i = 0; i <= schedule[weekIndex][0].length - 1; i++) { %>
+
+                    <div class = "scoreContainer">
+                      <div class = "homeDiv col-md4">
+                        <img src = "#">
+                        <h3><%= schedule[weekIndex][0][i].homeTeamId %></h3>
+                      </div>
+
+                      <div class = "scoreDiv col-md2">
+                        <h3><%= schedule[weekIndex][0][i].homeScore %></h3>
+                        <h3><a href= "/recap/<%= schedule[weekIndex][0][i].scheduleId %>">&nbspvs&nbsp</a></h3>
+                        <h3><%= schedule[weekIndex][0][i].awayScore %></h3>
+                      </div>
+
+                      <div class = "awayDiv col-md4">
+                        <h3><%= schedule[weekIndex][0][i].awayTeamId %></h3>
+                        <img src = "#">
+                      </div>
+                    </div>
+                    <% } %>
+                    </div>
+                    <% } %>
+
+                    <% for (let weekIndex = 21; weekIndex <= 24; weekIndex++){ %>
+                    <% var id = "post" + (weekIndex-21); %>
+                    <% var playoffRound = ['Wild Card Round', 'Divisional Round', 'Conference Championship Round', 'Super Bowl']; %>
+                    <div role="tabpanel" class="tab-pane active" id="<%=id %>">
+                    <h1><%=playoffRound[weekIndex]%></h1>
+                    <% for (let i = 0; i <= schedule[weekIndex][0].length - 1; i++) { %>
+
+                    <div class = "scoreContainer">
+                      <div class = "homeDiv col-md4">
+                        <img src = "#">
+                        <h3><%= schedule[weekIndex][0][i].homeTeamId %></h3>
+                      </div>
+
+                      <div class = "scoreDiv col-md2">
+                        <h3><%= schedule[weekIndex][0][i].homeScore %></h3>
+                        <h3><a href= "/recap/<%= schedule[weekIndex][0][i].scheduleId %>">&nbspvs&nbsp</a></h3>
+                        <h3><%= schedule[weekIndex][0][i].awayScore %></h3>
+                      </div>
+
+                      <div class = "awayDiv col-md4">
+                        <h3><%= schedule[weekIndex][0][i].awayTeamId %></h3>
+                        <img src = "#">
+                      </div>
+                    </div>
+                    <% } %>
+                    </div>
+                    <% } %>
+
+                </div>
+
+            </div>
+        </div>
+</body>

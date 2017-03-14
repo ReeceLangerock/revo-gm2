@@ -1,0 +1,76 @@
+.scoreContainer{
+  display: flex;
+  border:1px solid;
+  justify-content: space-around;
+
+
+}
+
+.homeDiv{
+  align-items: center;
+  text-align: left;
+  float: left;
+  display: flex;
+  flex:1 0;
+}
+
+.awayDiv{
+  align-items: center;
+  justify-content: flex-end;
+  display: flex;
+  flex:1 0;
+}
+
+.scoreDiv{
+  align-items:flex-end;
+  display: flex;
+  justify-content: center;
+  flex:1 0;
+}
+.data-page-container{
+  display: flex;
+  justify-content: space-between;
+
+}
+.data-page-container h4{
+  margin:0px;
+  padding: 0px;
+}
+
+.recapHeaderContainer{
+  border: 1px solid;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.recapHeaderItem{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex: 1 0;
+}
+
+.recapHeaderItem img{
+
+  max-width: 70px;
+  max-height: 70px;
+}
+
+.recapHeaderItem h3{
+  margin:0px;
+  padding: 0px;
+}
+
+.team-data-container{
+  display: flex;
+  flex: 1 1;
+  border:1px solid;
+  flex-direction: column;
+  padding: 2px;
+}
+
+.stat-row{
+  border-top: 1px solid;
+  display: flex;
+  justify-content: space-between;
+}

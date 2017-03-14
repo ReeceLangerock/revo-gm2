@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <title>Revo GM</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../style.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <%- include ./partials/navigation.html %>
+
+        <div class="container-fluid">
+            <div>
+
+              <div class = "recapHeaderContainer">
+
+              <div class = "recapHeaderItem" style = "padding-right:40px">
+                <% var imgSrc1 = "/images/" + teamNames[0].displayName +".jpg" %>
+                <img src = "<%=imgSrc1 %>">
+                <h3><%=teamNames[0].displayName %></h3>
+                <h3><%=gameScheduleInfoList[0].homeScore%></h3>
+              </div>
+
+                <div class = "recapHeaderItem"  style = "padding-left :40px">
+                <h3><%=gameScheduleInfoList[0].awayScore%></h3>
+                <h3><%=teamNames[1].displayName %></h3>
+                <% var imgSrc2 = "/images/" + teamNames[1].displayName +".jpg" %>
+                <img src = "<%=imgSrc2 %>">
+
+              </div>
+              </div>
+
+
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="navbar-brand">Team Statistics</li>
+                    <li role="presentation" class="active"><a href="#teamStats" aria-controls="teamStats" role="tab" data-toggle="tab">Team Stats</a></li>
+                    <% if(playerPassingStatInfoList != null ) { %>
+                    <li role="presentation"><a href="#playerStats" aria-controls="playerStats" role="tab" data-toggle="tab">Player Stats</a></li>
+                    <% } else { %>
+                      <li role="presentation" class = "disabled"><a href="#playerStats" aria-controls="playerStats" role="tab" data-toggle="tab">Player Stats</a></li>
+                      <% } %>
+
+
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="teamStats">
+                      <div class = "data-page-container">
+                        <% for(let i = 0; i < 2; i++){ %>
+                        <div class="team-data-container">
+
+                          <table class="table">
+                            <tbody>
+                              <tr class = "active">
+                                <th colspan="5">Defense</th>
+                              </tr>
+                              <tr>
+                                <th scope="row">Passing Yards Allowed</th>
+                                <td class = "col-md-1"><%=teamStatInfoList[i].defPassYds%></td>
+                              </tr>
+                              <tr>
+                                <th scope="row">Rushing Yards Allowed</th>
+                                <td class = "col-md-1"><%=teamStatInfoList[i].defRushYds%></td>
+                              </tr>
+                              <tr>
+                                <th scope="row">Interceptions</th>
+                                <td class = "col-md-1"><%=teamStatInfoList[i].defIntsRec%></td>
+                              </tr>
+                              <tr>
+                                <th scope="row">Forced Fumbles</th>
+                                <td class = "col-md-1"><%=teamStatInfoList[i].defForcedFum%></td>
+                              </tr>
+                              <tr>
+                                <th scope="row">Sacks</th>
+                                <td class = "col-md-1"><%=teamStatInfoList[i].defSacks%></td>
+                              </tr>
+
+                            </tbody>
+                            </table>
+
+                            <table class="table">
+                              <tbody>
+                                <tr class = "active">
+                                  <th colspan="5">Offense</th>
+                                </tr>
+                                <tr>
+                                  <th scope="row">Passing Yards</th>
+                                  <td class = "col-md-1"><%=teamStatInfoList[i].offPassYds%></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">Rushing Yards</th>
+                                  <td class = "col-md-1"><%=teamStatInfoList[i].offRushYds%></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">First Downs</th>
+                                  <td class = "col-md-1"><%=teamStatInfoList[i].off1stDowns%></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">Interceptions</th>
+                                  <td class = "col-md-1"><%=teamStatInfoList[i].offIntsLost%></td>
+                                </tr>
+                                <tr>
+                                  <th scope="row">Fumbles</th>
+                                  <td class = "col-md-1"><%=teamStatInfoList[i].offFumLost%></td>
+                                </tr>
+
+                              </tbody>
+                              </table>
+
+                              <table class="table">
+                                <tbody>
+                                  <tr class = "active">
+                                    <th colspan="5">Efficiency</th>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">Defensive RZ %</th>
+                                    <td class = "col-md-1"><%=(teamStatInfoList[i].defRedZonePct).toFixed(2)%>%</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">Offensive RZ %</th>
+                                    <td class = "col-md-1"><%=(teamStatInfoList[i].offRedZonePct).toFixed(2)%>%</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">3rd Down %</th>
+                                    <td class = "col-md-1"><%= (teamStatInfoList[i].off3rdDownConvPct).toFixed(2)%>%</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">4th Down</th>
+                                    <td class = "col-md-1"><%=teamStatInfoList[i].off4thDownConv%> / <%=teamStatInfoList[i].off4thDownAtt%></td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">Turnover Differential</th>
+                                    <td class = "col-md-1"><%=teamStatInfoList[i].tODiff%></td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">Penalties</th>
+                                    <td class = "col-md-1"><%=teamStatInfoList[i].penalties%></td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">Penalty Yards</th>
+                                    <td class = "col-md-1"><%=teamStatInfoList[i].penaltyYds%></td>
+                                  </tr>
+
+                                </tbody>
+                                </table>
+
+                        </div>
+                        <% } %>
+
+
+                      </div>
+
+                    </div>
+                    <% if(playerPassingStatInfoList != null ) { %>
+                    <div role="tabpanel" class="tab-pane" id="playerStats">
+                      <div class = "data-page-container">
+                        <% for(var team = 0; team < 2; team++){ %>
+                        <div class="team-data-container">
+                      <table class="table">
+
+                        <thead>
+                          <tr class = "active">
+                            <th colspan="5">Passing</th>
+                          </tr>
+                          <tr>
+                            <th>Player</th>
+                            <th>Yards</th>
+                            <th>TD</th>
+                            <th>Int</th>
+                            <th>CP / AT</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% for(let i =0; i < playerPassingStatInfoList.length; i++) { %>
+                          <tr>
+                            <% if(playerPassingStatInfoList[i].teamId == teamStatInfoList[team].teamId) { %>
+                              <th scope="row" class = "col-md-5"><%=playerPassingStatInfoList[i].fullName %></th>
+                            <td class = "col-md-1"><%=playerPassingStatInfoList[i].passYds %></tpassYdsd>
+                            <td class = "col-md-1"><%=playerPassingStatInfoList[i].passTDs %></td>
+                            <td class = "col-md-1"><%=playerPassingStatInfoList[i].passInts %></td>
+                            <td class = "col-md-1"><%=playerPassingStatInfoList[i].passComp %> / <%=playerPassingStatInfoList[i].passAtt %></td>
+
+                              <% } %>
+                          </tr>
+                          <% } %>
+                        </tbody>
+                        </table>
+                        <br>
+                        <table class="table">
+
+                        <thead>
+                          <tr class = "active">
+                            <th colspan="5">Rushing</th>
+                          </tr>
+                          <tr>
+                            <th>Player</th>
+                            <th>LG</th>
+                            <th>YDS</th>
+                            <th>TD</th>
+                            <th>ATT</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% for(let i =0; i < playerRushingStatInfoList.length; i++) { %>
+                          <tr>
+                            <% if(playerRushingStatInfoList[i].teamId == teamStatInfoList[team].teamId) { %>
+                            <th scope="row" class = "col-md-5"><%=playerRushingStatInfoList[i].fullName %></th>
+                            <td class = "col-md-1"><%=playerRushingStatInfoList[i].rushLongest %></tpassYdsd>
+                            <td class = "col-md-1"><%=playerRushingStatInfoList[i].rushTDs %></td>
+                            <td class = "col-md-1"><%=playerRushingStatInfoList[i].rushYds %></td>
+                            <td class = "col-md-1"><%=playerRushingStatInfoList[i].rushAtt %></td>
+                            <% } %>
+                          </tr>
+                          <% } %>
+                        </tbody>
+                      </table>
+
+                      <table class="table">
+
+                      <thead>
+                        <tr class = "active">
+                          <th colspan="5">Receiving</th>
+                        </tr>
+                        <tr>
+                          <th>Player</th>
+                          <th>LG</th>
+                          <th>YDS</th>
+                          <th>TD</th>
+                          <th>REC</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% for(let i =0; i < playerReceivingStatInfoList.length; i++) { %>
+                        <tr>
+                          <% if(playerReceivingStatInfoList[i].teamId == teamStatInfoList[team].teamId) { %>
+                          <th scope="row" class = "col-md-5"><%=playerReceivingStatInfoList[i].fullName %></th>
+                          <td class = "col-md-1"><%=playerReceivingStatInfoList[i].recLongest %></tpassYdsd>
+                          <td class = "col-md-1"><%=playerReceivingStatInfoList[i].recTDs %></td>
+                          <td class = "col-md-1"><%=playerReceivingStatInfoList[i].recYds %></td>
+                          <td class = "col-md-1"><%=playerReceivingStatInfoList[i].recCatches %></td>
+                          <% } %>
+                        </tr>
+                        <% } %>
+                      </tbody>
+                    </table>
+
+                    <table class="table">
+
+                    <thead>
+                      <tr class = "active">
+                        <th colspan="5">Kicking</th>
+                      </tr>
+                      <tr>
+                        <th>Player</th>
+                        <th>PTS</th>
+                        <th>XP</th>
+                        <th>LG</th>
+                        <th>FG</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% for(let i =0; i < playerKickingStatInfoList.length; i++) { %>
+                      <tr>
+                        <% if(playerKickingStatInfoList[i].teamId == teamStatInfoList[team].teamId) { %>
+                        <th scope="row" class = "col-md-5"><%=playerKickingStatInfoList[i].fullName %></th>
+                        <td class = "col-md-1"><%=playerKickingStatInfoList[i].kickPts %></tpassYdsd>
+                        <td class = "col-md-1"><%=playerKickingStatInfoList[i].xPMade %> / <%=playerKickingStatInfoList[i].xPAtt %></td>
+                        <td class = "col-md-1"><%=playerKickingStatInfoList[i].fGLongest %></td>
+                        <td class = "col-md-1"><%=playerKickingStatInfoList[i].fGMade %> / <%=playerKickingStatInfoList[i].fGAtt %></td>
+                        <% } %>
+                      </tr>
+                      <% } %>
+                    </tbody>
+                  </table>
+
+                  <table class="table">
+
+                  <thead>
+                    <tr class = "active">
+                      <th colspan="5">Punting</th>
+                    </tr>
+                    <tr>
+                      <th>Player</th>
+                      <th>LG</th>
+                      <th>I20</th>
+                      <th>AVG</th>
+                      <th>NUM</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% for(let i =0; i < playerPuntingStatInfoList.length; i++) { %>
+                    <tr>
+                      <% if(playerPuntingStatInfoList[i].teamId == teamStatInfoList[team].teamId) { %>
+                      <th scope="row" class = "col-md-5"><%=playerPuntingStatInfoList[i].fullName %></th>
+                      <td class = "col-md-1"><%=playerPuntingStatInfoList[i].puntLongest %></tpassYdsd>
+                      <td class = "col-md-1"><%=playerPuntingStatInfoList[i].puntsIn20 %></td>
+                      <td class = "col-md-1"><%=playerPuntingStatInfoList[i].puntYdsPerAtt %></td>
+                      <td class = "col-md-1"><%=playerPuntingStatInfoList[i].puntAtt %></td>
+                      <% } %>
+                    </tr>
+                    <% } %>
+                  </tbody>
+                </table>
+
+                <table class="table table-responsive">
+
+                <thead>
+                  <tr class = "active">
+                    <th colspan="5">Defense</th>
+                  </tr>
+                  <tr>
+                    <th>Player</th>
+                    <th>FF</th>
+                    <th>INT</th>
+                    <th>SCK</th>
+                    <th>T-A</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% for(let i =0; i < playerDefensiveStatInfoList.length; i++) { %>
+                  <tr>
+                    <% if(playerDefensiveStatInfoList[i].teamId == teamStatInfoList[team].teamId) { %>
+                    <th scope="row" class = "col-md-5"><%=playerDefensiveStatInfoList[i].fullName %></th>
+                    <td class = "col-md-1"><%=playerDefensiveStatInfoList[i].defForcedFum %></tpassYdsd>
+                    <td class = "col-md-1"><%=playerDefensiveStatInfoList[i].defInts %></td>
+                    <td class = "col-md-1"><%=playerDefensiveStatInfoList[i].defSacks %></td>
+                    <td class = "col-md-1"><%=playerDefensiveStatInfoList[i].defTotalTackles %> </td>
+                    <% } %>
+                  </tr>
+                  <% } %>
+                </tbody>
+              </table>
+                        </div>
+                      <% } %>
+
+
+                  </div>
+                    </div>
+                  <% }  %>
+                </div>
+            </div>
+        </div>
+
+</body>
